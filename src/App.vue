@@ -1,5 +1,15 @@
 <template>
-  <router-view></router-view>
+  <header>
+    <navbar></navbar>
+  </header>
+
+  <main>
+    <router-view></router-view>
+
+  </main>
+
+  <footer class="flex h-20">
+  </footer>
 </template>
 
 <script>

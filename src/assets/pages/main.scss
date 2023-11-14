@@ -1,0 +1,46 @@
+.body_main {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.menu_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid gray;
+    height: 100%;
+    width: 30%;
+    padding: 5px 10px 10px 10px;
+    border-radius: 10px;
+}
+
+.menu_button {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(135, 135, 135);
+    width: 25%;
+    border: 1px solid black;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.menu_button:hover {
+    background-color: rgb(174, 174, 174);
+}
+
+.menu_data_input {
+    display: flex;
+    outline: none;
+
+}
+
+.menu_data_input {
+    -moz-appearance: textfield;
+}
+
+.menu_data_input::-webkit-inner-spin-button {
+    display: none;
+}
