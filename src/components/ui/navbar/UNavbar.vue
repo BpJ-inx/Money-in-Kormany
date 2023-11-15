@@ -24,7 +24,7 @@ export default {
 </script>
   
 <style lang="scss" scoped>
-@import '../../../assets/compmonents/navbar.scss';
+@import '../../../assets/compmonents/navbarStyle.scss';
 </style>
   
   
