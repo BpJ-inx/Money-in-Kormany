@@ -1,6 +1,9 @@
 <template>
-    <nav class="navbar lg:px-4 flex flex-wrap  items-center lg:py-2">
-        (MIK) Money In Kормане
+    <nav class="navbar lg:px-4 flex flex-wrap   lg:py-2">
+        <label class="flex pr-1">
+            <img src="/label.png" class="mr-2">
+            <img src="/name.png" class="pt-1" alt="Momey In Кормане">
+        </label>
     </nav>
 </template>
   
