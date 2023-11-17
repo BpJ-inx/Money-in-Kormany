@@ -7,11 +7,19 @@
             <div>Сумма : {{ sum }} </div>
             <button class="menu_button" @click="calculation">Расчитать</button>
 
+
         </div>
         <div class="history_box">
             <span class="flex flex-row justify-center">History</span>
-            <div v-if="isHistoryExist">
-                <History_point :responseHistoryPoint='history'></History_point>
+            <div class="flex flex-col h-full justify-between" v-if="isHistoryExist">
+                <div>
+                    <History_point :responseHistoryPoint='history'></History_point>
+                </div>
+                <div class="flex flex-row  bottom-0 left-0">
+                    <button class="menu_button" @click="previousPageHistory"> &lt;- </button>
+                    <!-- <button class="menu_button" @click="reset"> reset </button> -->
+                    <button class="menu_button" @click="nextPageHistory"> -> </button>
+                </div>
             </div>
 
         </div>
@@ -20,11 +28,20 @@
 
 <script>
 import History_point from '../components/History_point.vue'
+import {
+    sum,
+    calculation,
+    previousPageHistory,
+    nextPageHistory,
+    history,
+    isHistoryExist,
+    lastPoint,
+    firstPoint
+} from '../hooks/historyTransaction.js'
+
 export default {
     data() {
         return {
-            sum: +localStorage.getItem('sum'),
-
         }
     },
     components: {
@@ -37,39 +54,26 @@ export default {
             let history = []
             localStorage.setItem('history', JSON.stringify(history))
         }
+
     },
-    methods: {
-        calculation() {
-            let plus = +document.querySelector('.plus').value
-            let minus = +document.querySelector('.minus').value
-            let history = JSON.parse(localStorage.getItem('history'))
-            let day = new Date().getDate()
-            let numberOfHistoryPoint = localStorage.getItem('numberOfHistoryPoint')
-            numberOfHistoryPoint++
-            localStorage.setItem('numberOfHistoryPoint', numberOfHistoryPoint)
+    methods:{
 
-            this.isHistoryExist = true
-            this.sum = this.sum + plus - minus
-            localStorage.setItem('sum', this.sum)
-            document.querySelector('.plus').value = ''
-            document.querySelector('.minus').value = ''
-
-            history.push([numberOfHistoryPoint,day, plus, minus]);
-
-            localStorage.setItem('history', JSON.stringify(history))
-            this.history = JSON.parse(localStorage.getItem('history'))
-        },
+        // reset(){
+        //     localStorage.clear();
+        //     location.reload()
+        // }
     },
     setup() {
-        let history = JSON.parse(localStorage.getItem('history'))
-        let isHistoryExist = true
 
-        if (history === null) {
-            isHistoryExist = false
-        }
         return {
+            sum,
+            calculation,
+            previousPageHistory,
+            nextPageHistory,
             history,
-            isHistoryExist
+            isHistoryExist,
+            lastPoint,
+            firstPoint
         }
     }
 

@@ -25,6 +25,7 @@
     width: 25%;
     border: 1px solid black;
     margin: auto;
+    margin-top: 10px;
     border-radius: 5px;
 }
 
@@ -49,7 +50,7 @@
 .history_box {
     display: flex;
     flex-direction: column;
-
+    // justify-content: space-between;
     border: 1px solid gray;
     min-height: 200px;
     width: 30%;
