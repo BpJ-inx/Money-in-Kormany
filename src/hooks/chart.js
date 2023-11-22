@@ -57,10 +57,7 @@ function getDataHistory() {
 
 
         });
-        // newDataHistory.map(function (item) {
 
-
-        // });
     }
 }
 

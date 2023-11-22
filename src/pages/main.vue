@@ -4,7 +4,7 @@
             <span class="flex flex-row justify-center">Menu</span>
             <div>Добавить:<input type=number class="menu_data_input plus"> </div>
             <div>Вычесть:<input type=number class="menu_data_input minus"> </div>
-            <div>Сумма : {{ sum }} </div>
+            <div class="m-auto mt-1">Сумма : {{ sum }} </div>
             <button class="menu_button" @click="calculation">Расчитать</button>
 
 
@@ -95,5 +95,4 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/pages/mainStyle.scss';
-@import '../assets/compmonents/canvaBoxStyle.scss';
 </style>

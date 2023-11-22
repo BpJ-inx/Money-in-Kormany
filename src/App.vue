@@ -8,8 +8,7 @@
 
   </main>
 
-  <footer class="flex h-20">
-  </footer>
+  <footer class="flex h-10"></footer>
 </template>
 
 <script>
