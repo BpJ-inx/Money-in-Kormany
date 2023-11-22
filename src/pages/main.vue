@@ -17,14 +17,18 @@
                 </div>
                 <div class="flex flex-row  bottom-0 left-0">
                     <button class="menu_button" @click="previousPageHistory"> &lt;- </button>
-                    <!-- <button class="menu_button" @click="reset"> reset </button> -->
+                    <button class="menu_button" @click="reset"> reset </button>
                     <button class="menu_button" @click="nextPageHistory"> -> </button>
                 </div>
             </div>
 
         </div>
     </div>
+    <div class="chart_place">
+        <div class="canva_box_style"><canvas id="acquisitions"></canvas></div>
+    </div>
 </template>
+
 
 <script>
 import History_point from '../components/History_point.vue'
@@ -38,6 +42,9 @@ import {
     lastPoint,
     firstPoint
 } from '../hooks/historyTransaction.js'
+import { createChart } from '../hooks/chart.js'
+import { onMounted } from 'vue'
+
 
 export default {
     data() {
@@ -56,15 +63,19 @@ export default {
         }
 
     },
-    methods:{
+    methods: {
 
-        // reset(){
-        //     localStorage.clear();
-        //     location.reload()
-        // }
+        reset() {
+            localStorage.clear();
+            location.reload()
+        }
+
+
     },
     setup() {
-
+        onMounted(() => {
+            createChart()
+        })
         return {
             sum,
             calculation,
@@ -73,7 +84,8 @@ export default {
             history,
             isHistoryExist,
             lastPoint,
-            firstPoint
+            firstPoint,
+            createChart
         }
     }
 
@@ -83,4 +95,5 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/pages/mainStyle.scss';
+@import '../assets/compmonents/canvaBoxStyle.scss';
 </style>

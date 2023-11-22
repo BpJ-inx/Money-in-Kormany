@@ -1,4 +1,5 @@
 import { ref } from 'vue'
+import { createChart, chart } from '../hooks/chart.js'
 
 
 const sum = ref(+localStorage.getItem('sum'))
@@ -6,7 +7,7 @@ const firstPoint = ref(0)
 const lastPoint = ref(5)
 const isHistoryExist = ref(true)
 const history = ref(JSON.parse(localStorage.getItem('history')))
-if (history.value === null) {
+if (history.value === null || history.value.length == 0) {
     isHistoryExist.value = false
 } else {
     if (history.value.length >= 5) {
@@ -28,6 +29,7 @@ const calculation = () => {
         console.log('пустой ввод');
         document.querySelector('.plus').value = ''
         document.querySelector('.minus').value = ''
+        return
     } else {
         let allHistory = JSON.parse(localStorage.getItem('history'))
         let day = new Date().getDate()
@@ -54,6 +56,10 @@ const calculation = () => {
 
 
     }
+    chart.value.destroy();
+    createChart()
+
+
 }
 
 const nextPageHistory = () => {
