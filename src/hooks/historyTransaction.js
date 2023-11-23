@@ -32,7 +32,13 @@ const calculation = () => {
         return
     } else {
         let allHistory = JSON.parse(localStorage.getItem('history'))
-        let day = new Date().getDate()
+
+        let dateObj = new Date();
+        let month = dateObj.getUTCMonth() + 1;
+        let day = dateObj.getUTCDate();
+        let year = dateObj.getUTCFullYear();
+
+        let newDate = [day, month, year]
 
         let numberOfHistoryPoint = localStorage.getItem('numberOfHistoryPoint')
         numberOfHistoryPoint++
@@ -44,7 +50,7 @@ const calculation = () => {
         document.querySelector('.plus').value = ''
         document.querySelector('.minus').value = ''
 
-        allHistory.push([numberOfHistoryPoint, day, plus, minus]);
+        allHistory.push([numberOfHistoryPoint, newDate, plus, minus]);
         localStorage.setItem('history', JSON.stringify(allHistory))
 
 

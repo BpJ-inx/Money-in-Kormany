@@ -7,25 +7,79 @@ import { firstPoint, lastPoint } from '../hooks/historyTransaction.js'
 const days = ref([])
 const money = ref([])
 const chart = ref([])
+const months = ref([
+    ['January', [1, 31]],
+    ['February', [1, 28]],
+    ['March', [1, 31]],
+    ['April', [1, 30]],
+    ['May', [1, 31]],
+    ['June', [1, 30]],
+    ['July', [1, 31]],
+    ['August', [1, 31]],
+    ['September', [1, 30]],
+    ['October', [1, 31]],
+    ['November', [1, 30]],
+    ['December', [1, 31]]
+]);
+const chooseMonth = ref(new Date().getUTCMonth());
 
 function getDataHistory() {
-    const newDataHistory = JSON.parse(localStorage.getItem('history'))
-    // if (newDataHistory.length >= 5) {
-    //     newDataHistory = newDataHistory.slice(newDataHistory.length - lastPoint.value, newDataHistory.length - firstPoint.value)
-    // }
+    let newDataHistory = JSON.parse(localStorage.getItem('history'))
+
     let sum = 0
 
-    //[[1,22,1,0],[2,23,1,0],[2,24,1,0],[2,25,1,0],[2,26,1,0],[2,27,1,0],[2,28,1,0],[2,29,1,0],[2,30,1,0],[2,31,1,0]]
+
     if (newDataHistory) {
         let lastDay = 0
         money.value = []
         days.value = []
 
+
+        for (let i = 0; i < months.value[chooseMonth.value][1][1]; i++) {
+            days.value.push((i + 1 + ` ${months.value[chooseMonth.value][0].slice(0, 3)}`))
+        }
+
+        newDataHistory = newDataHistory.filter(function (item) {  //фильт выбранного месяца
+            if (item[1][1] == chooseMonth.value + 1) {
+                return item
+            } else {
+                if (item[2]) {
+                    sum = sum + item[2]
+                    if (item[3]) {
+                        sum = sum - item[3]
+                    }
+
+                } else if (item[3]) {
+                    sum = sum - item[3]
+                }
+            }
+
+
+        })
+
+        let i = newDataHistory[0][1][0]
+        lastDay = i - 1
+        while (i != 1) {                  ///пропустить дни в графике в начале месяца до того дня с которого началась запись
+            money.value.push('-')
+            --i
+        }
+
+
+
         newDataHistory.map(function (item) {
 
-            if (lastDay != item[1]) {
-                lastDay = item[1]
-                days.value.push(`Day ${item[1]}`)
+
+            if (lastDay != item[1][0] - 1) {     //пропустить дни в графике в которых не было записей
+                while (lastDay != item[1][0]) {
+                    money.value.push(sum)
+                    ++lastDay
+                }
+                lastDay = item[1][0]
+            }
+            if (lastDay != item[1][0]) {
+                lastDay = item[1][0]
+
+
                 if (item[2]) {
                     sum = sum + item[2]
                     if (item[3]) {
@@ -54,39 +108,23 @@ function getDataHistory() {
                     // money.value[money.length-1]=+sum
                 }
             }
+        }
 
 
-        });
+        );
 
     }
 }
 
 const createChart = () => {
     getDataHistory()
-    // const MONTHS = [
-    //     'January',
-    //     'February',
-    //     'March',
-    //     'April',
-    //     'May',
-    //     'June',
-    //     'July',
-    //     'August',
-    //     'September',
-    //     'October',
-    //     'November',
-    //     'December'
-    // ];
-
-
-
 
     chart.value = new Chart(
         document.querySelector('#acquisitions'),
         {
             type: 'line',
             data: {
-                labels: days.value.map(row => row),
+                labels: days.value,
                 datasets: [
                     {
                         label: 'Балланс',
