@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { createChart, chart } from '../hooks/chart.js'
+import { createChart, chart, chooseMonth } from '../hooks/chart.js'
 
 
 const sum = ref(+localStorage.getItem('sum'))
@@ -95,6 +95,42 @@ const previousPageHistory = () => {
     }
 }
 
+const nextChartMonth = () => {
+    let newDataHistory = JSON.parse(localStorage.getItem('history'))
+    let months = new Set()
+    newDataHistory.map(function (item) {
+        months.add(item[1][1])
+    })
+
+    if (months.has(chooseMonth.value + 2)) {
+        chart.value.destroy();
+        ++chooseMonth.value
+        createChart()
+    }
+
+}
+
+const previousChartMonth = () => {
+    let newDataHistory = JSON.parse(localStorage.getItem('history'))
+    let months = new Set()
+    newDataHistory.map(function (item) {
+        months.add(item[1][1])
+    })
+
+    if (months.has(chooseMonth.value)) {
+        chart.value.destroy();
+        --chooseMonth.value
+        createChart()
+    }
+}
+const thisChartMonth = () => {
+    if (chooseMonth.value != new Date().getUTCMonth()) {
+        chart.value.destroy();
+        chooseMonth.value = new Date().getUTCMonth()
+        createChart()
+    }
+}
+
 export {
     sum,
     calculation,
@@ -103,5 +139,8 @@ export {
     history,
     isHistoryExist,
     lastPoint,
-    firstPoint
+    firstPoint,
+    nextChartMonth,
+    previousChartMonth,
+    thisChartMonth
 }    

@@ -6,8 +6,6 @@
             <div>Вычесть:<input type=number class="menu_data_input minus"> </div>
             <div class="m-auto mt-1">Сумма : {{ sum }} </div>
             <button class="menu_button" @click="calculation">Расчитать</button>
-
-
         </div>
         <div class="history_box">
             <span class="flex flex-row justify-center">History</span>
@@ -24,8 +22,13 @@
 
         </div>
     </div>
-    <div class="chart_place">
+    <div class="chart_place flex flex-col ">
         <div class="canva_box_style"><canvas id="acquisitions"></canvas></div>
+        <div class="chart_place_button flex flex-col ">
+            <button class="menu_button" @click="previousChartMonth">&lt;-</button>
+            <button class="menu_button" @click="thisChartMonth">Нынешний месяц</button>
+            <button class="menu_button" @click="nextChartMonth">-></button>
+        </div>
     </div>
 </template>
 
@@ -40,7 +43,10 @@ import {
     history,
     isHistoryExist,
     lastPoint,
-    firstPoint
+    firstPoint,
+    nextChartMonth,
+    previousChartMonth,
+    thisChartMonth
 } from '../hooks/historyTransaction.js'
 import { createChart } from '../hooks/chart.js'
 import { onMounted } from 'vue'
@@ -85,7 +91,10 @@ export default {
             isHistoryExist,
             lastPoint,
             firstPoint,
-            createChart
+            createChart,
+            nextChartMonth,
+            previousChartMonth,
+            thisChartMonth
         }
     }
 
@@ -95,4 +104,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '../assets/pages/mainStyle.scss';
+
+.chart_place_button {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
 </style>

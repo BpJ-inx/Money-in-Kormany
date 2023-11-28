@@ -42,7 +42,7 @@ function getDataHistory() {
         newDataHistory = newDataHistory.filter(function (item) {  //фильт выбранного месяца
             if (item[1][1] == chooseMonth.value + 1) {
                 return item
-            } else {
+            } else if (item[1][1] < chooseMonth.value + 1) {
                 if (item[2]) {
                     sum = sum + item[2]
                     if (item[3]) {
@@ -64,10 +64,7 @@ function getDataHistory() {
             --i
         }
 
-
-
         newDataHistory.map(function (item) {
-
 
             if (lastDay != item[1][0] - 1) {     //пропустить дни в графике в которых не было записей
                 while (lastDay != item[1][0]) {
@@ -161,6 +158,7 @@ const createChart = () => {
 
 export {
     createChart,
-    chart
+    chart,
+    chooseMonth
 }
 
