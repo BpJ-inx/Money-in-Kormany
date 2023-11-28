@@ -22,8 +22,10 @@
 
         </div>
     </div>
-    <div class="chart_place flex flex-col ">
-        <div class="canva_box_style"><canvas id="acquisitions"></canvas></div>
+    <div class="chart_place flex  ">
+        <div class="canva_box_style">
+            <canvas id="acquisitions"></canvas>
+        </div>
         <div class="chart_place_button flex flex-col ">
             <button class="menu_button" @click="previousChartMonth">&lt;-</button>
             <button class="menu_button" @click="thisChartMonth">Нынешний месяц</button>
