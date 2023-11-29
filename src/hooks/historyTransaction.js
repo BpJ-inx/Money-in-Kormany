@@ -69,6 +69,7 @@ const calculation = () => {
 }
 
 const nextPageHistory = () => {
+
     let allHistory = JSON.parse(localStorage.getItem('history'))
     if (lastPoint.value - allHistory.length < 0) {
 
@@ -96,6 +97,7 @@ const previousPageHistory = () => {
 }
 
 const nextChartMonth = () => {
+
     let newDataHistory = JSON.parse(localStorage.getItem('history'))
     let months = new Set()
     newDataHistory.map(function (item) {

@@ -143,6 +143,9 @@ const createChart = () => {
                     legend: {
                         display: false
                     }
+                },
+                animation: {
+                    duration: 100
                 }
             }
 
