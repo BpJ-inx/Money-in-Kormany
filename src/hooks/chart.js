@@ -39,6 +39,7 @@ function getDataHistory() {
             days.value.push((i + 1 + ` ${months.value[chooseMonth.value][0].slice(0, 3)}`))
         }
 
+
         newDataHistory = newDataHistory.filter(function (item) {  //фильт выбранного месяца
             if (item[1][1] == chooseMonth.value + 1) {
                 return item
@@ -57,13 +58,16 @@ function getDataHistory() {
 
         })
 
-        let i = newDataHistory[0][1][0]
-        lastDay = i - 1
-        while (i != 1) {                  ///пропустить дни в графике в начале месяца до того дня с которого началась запись
-            money.value.push('-')
-            --i
+        if (newDataHistory.length == 0) {
+            money.value.push(sum)
+        } else {
+            let i = newDataHistory[0][1][0]
+            lastDay = i - 1
+            while (i != 1) {                  ///пропустить дни в графике в начале месяца до того дня с которого началась запись
+                money.value.push('-')
+                --i
+            }
         }
-
         newDataHistory.map(function (item) {
 
             if (lastDay != item[1][0] - 1) {     //пропустить дни в графике в которых не было записей
