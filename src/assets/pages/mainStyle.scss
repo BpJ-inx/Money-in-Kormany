@@ -51,6 +51,8 @@
     margin-top: 10px;
     border-radius: 5px;
     transition: 0.3s;
+    position: relative;
+
 }
 
 .menu_button:hover {
@@ -59,6 +61,7 @@
 
 .menu_button:active {
     background-color: rgb(78, 251, 78);
+    top: 1px;
 }
 
 .menu_data_input {

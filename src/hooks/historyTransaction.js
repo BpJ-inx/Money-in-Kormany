@@ -104,7 +104,7 @@ const nextChartMonth = () => {
         months.add(item[1][1])
     })
 
-    if (months.has(chooseMonth.value + 1)) {
+    if (months.has(chooseMonth.value + 2)) {
         chart.value.destroy();
         ++chooseMonth.value
         createChart()

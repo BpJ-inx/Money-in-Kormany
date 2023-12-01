@@ -3,4 +3,45 @@
     background-color: rgba(7, 57, 7, 0.667);
     align-items: center;
     width: 100%;
+    box-shadow: 0px 3px 5px rgb(12, 60, 12);
+    // justify-content: center;
+
+}
+
+.navbar_label {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 0;
+}
+
+.nav_button_place {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    // margin: auto;
+    gap: 10px;
+    flex-grow: 0.915;
+}
+
+
+.nav_button {
+    display: flex;
+    justify-self: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    align-items: center;
+    background-color: rgb(32, 158, 32);
+    border: 2px solid rgb(14, 74, 14);
+    padding: 5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.nav_button:hover {
+    background-color: rgb(42, 202, 42);
+}
+
+.nav_button:active {
+    background-color: rgb(78, 251, 78);
+    top: 1px;
 }
