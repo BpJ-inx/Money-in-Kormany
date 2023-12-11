@@ -28,7 +28,7 @@
         </div>
         <div class="chart_place_button flex flex-col ">
             <button class="menu_button" @click="previousChartMonth">&lt;-</button>
-            <button class="menu_button" @click="thisChartMonth">Нынешний месяц</button>
+            <button class="menu_button" @click="thisChartMonth">Текущий месяц</button>
             <button class="menu_button" @click="nextChartMonth">-></button>
         </div>
     </div>
@@ -70,6 +70,7 @@ export default {
             localStorage.setItem('history', JSON.stringify(history))
         }
 
+        
     },
     methods: {
 

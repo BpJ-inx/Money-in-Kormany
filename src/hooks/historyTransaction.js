@@ -17,7 +17,11 @@ if (history.value === null || history.value.length == 0) {
     }
 }
 
-
+let allHistory = JSON.parse(localStorage.getItem('history'))
+for (let i = 0; i < allHistory.length; i++) {
+sum.value+=allHistory[i][2]
+sum.value-=allHistory[i][3]
+}
 
 
 
@@ -133,6 +137,30 @@ const thisChartMonth = () => {
     }
 }
 
+
+const deleteHistoryPoint = (point) => {
+    sum.value = localStorage.getItem('sum')
+    let allHistory = JSON.parse(localStorage.getItem('history'))
+    allHistory.map((item) => {
+        if (item[0] == point) {
+            sum.value -= item[2]
+            sum.value += item[3]
+        }
+    })
+    allHistory = allHistory.filter(item => item[0] != point)
+
+    localStorage.setItem('history', JSON.stringify(allHistory))
+
+    if (allHistory.length >= 5) {
+        history.value = allHistory.slice(allHistory.length - lastPoint.value, allHistory.length - firstPoint.value)
+    } else {
+        history.value = JSON.parse(localStorage.getItem('history'))
+    }
+    localStorage.setItem('sum', sum.value)
+    chart.value.destroy();
+    createChart()
+}
+
 export {
     sum,
     calculation,
@@ -144,5 +172,6 @@ export {
     firstPoint,
     nextChartMonth,
     previousChartMonth,
-    thisChartMonth
+    thisChartMonth,
+    deleteHistoryPoint
 }    
