@@ -18,11 +18,12 @@ if (history.value === null || history.value.length == 0) {
 }
 
 let allHistory = JSON.parse(localStorage.getItem('history'))
-for (let i = 0; i < allHistory.length; i++) {
-sum.value+=allHistory[i][2]
-sum.value-=allHistory[i][3]
+if (allHistory) {
+    for (let i = 0; i < allHistory.length; i++) {
+        sum.value += allHistory[i][2]
+        sum.value -= allHistory[i][3]
+    }
 }
-
 
 
 

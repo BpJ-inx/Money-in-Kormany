@@ -15,9 +15,12 @@
                 </div>
                 <div class="flex flex-row  bottom-0 left-0">
                     <button class="menu_button" @click="previousPageHistory"> &lt;- </button>
-                    <button class="menu_button" @click="reset"> reset </button>
+                    <!-- <button class="menu_button" @click="reset"> reset </button> -->
                     <button class="menu_button" @click="nextPageHistory"> -> </button>
                 </div>
+            </div>
+            <div class="flex flex-col h-full justify-center m-auto" v-else>
+                Нет записей в истории
             </div>
 
         </div>
@@ -70,7 +73,7 @@ export default {
             localStorage.setItem('history', JSON.stringify(history))
         }
 
-        
+
     },
     methods: {
 
